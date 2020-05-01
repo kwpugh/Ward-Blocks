@@ -1,0 +1,15 @@
+{
+	"item.ward_blocks.health_ward_block": "Health Ward Block",
+	"block.ward_blocks.health_ward_block": "Health Ward Block",
+
+	"item.ward_blocks.growth_ward_block": "Growth Ward Block",
+	"block.ward_blocks.growth_ward_block": "Growth Ward Block",
+	
+	"item.ward_blocks.attack_ward_block": "Attack Ward Block",
+	"block.ward_blocks.attack_ward_block": "Attack Ward Block",
+
+	"item.ward_blocks.defense_ward_block": "Defense Ward Block",
+	"block.ward_blocks.defense_ward_block": "Defense Ward Block",
+											
+	"itemGroup.ward_blocks.ward_blocks_group": "Ward Blocks"
+}
