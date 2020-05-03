@@ -1,7 +1,7 @@
 package com.kwpugh.ward_blocks.blocks;
 
 import com.kwpugh.ward_blocks.init.BlockInit;
-import com.kwpugh.ward_blocks.util.GrowthUtil;
+import com.kwpugh.ward_blocks.util.WardBlockEffects;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.Tickable;
@@ -18,7 +18,7 @@ public class GrowthWardBlockEntity extends BlockEntity implements Tickable
 	{
 		if(!world.isClient && world.isReceivingRedstonePower(this.pos))
 		{
-			GrowthUtil.growCrops(world, pos, 360, 10);
+			WardBlockEffects.growCrops(world, pos, 360, 10);
 		}
 	}
 }

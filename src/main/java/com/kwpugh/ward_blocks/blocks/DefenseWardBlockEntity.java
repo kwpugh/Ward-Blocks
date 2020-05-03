@@ -1,7 +1,7 @@
 package com.kwpugh.ward_blocks.blocks;
 
 import com.kwpugh.ward_blocks.init.BlockInit;
-import com.kwpugh.ward_blocks.util.DefenseUtil;
+import com.kwpugh.ward_blocks.util.WardBlockEffects;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.Tickable;
@@ -18,7 +18,7 @@ public class DefenseWardBlockEntity extends BlockEntity implements Tickable
 	{
 		if(!world.isClient && world.isReceivingRedstonePower(this.pos))
 		{
-			DefenseUtil.Defense(world, pos);
+			WardBlockEffects.giveDefense(world, pos, 12.0D, 0);
 		}
 	}
 }
