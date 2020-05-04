@@ -1,4 +1,4 @@
-package com.kwpugh.ward_blocks.blocks;
+package com.kwpugh.ward_blocks.blocks.blockentities;
 
 import com.kwpugh.ward_blocks.init.BlockInit;
 import com.kwpugh.ward_blocks.util.WardBlockEffects;

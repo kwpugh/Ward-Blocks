@@ -2,17 +2,17 @@ package com.kwpugh.ward_blocks.init;
 
 import com.kwpugh.ward_blocks.WardBlocks;
 import com.kwpugh.ward_blocks.blocks.AttackWardBlock;
-import com.kwpugh.ward_blocks.blocks.AttackWardBlockEntity;
 import com.kwpugh.ward_blocks.blocks.DefenseWardBlock;
-import com.kwpugh.ward_blocks.blocks.DefenseWardBlockEntity;
 import com.kwpugh.ward_blocks.blocks.ExpWardBlock;
-import com.kwpugh.ward_blocks.blocks.ExpWardBlockEntity;
 import com.kwpugh.ward_blocks.blocks.GrowthWardBlock;
-import com.kwpugh.ward_blocks.blocks.GrowthWardBlockEntity;
 import com.kwpugh.ward_blocks.blocks.HealthWardBlock;
-import com.kwpugh.ward_blocks.blocks.HealthWardBlockEntity;
 import com.kwpugh.ward_blocks.blocks.LootWardBlock;
-import com.kwpugh.ward_blocks.blocks.LootWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.blockentities.AttackWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.blockentities.DefenseWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.blockentities.ExpWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.blockentities.GrowthWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.blockentities.HealthWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.blockentities.LootWardBlockEntity;
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Block;

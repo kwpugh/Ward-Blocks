@@ -1,4 +1,4 @@
-package com.kwpugh.ward_blocks.blocks;
+package com.kwpugh.ward_blocks.blocks.blockentities;
 
 import com.kwpugh.ward_blocks.init.BlockInit;
 import com.kwpugh.ward_blocks.util.WardBlockEffects;
@@ -6,11 +6,11 @@ import com.kwpugh.ward_blocks.util.WardBlockEffects;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.Tickable;
 
-public class ExpWardBlockEntity extends BlockEntity implements Tickable
+public class GrowthWardBlockEntity extends BlockEntity implements Tickable
 {		
-	public ExpWardBlockEntity()
+	public GrowthWardBlockEntity()
 	{
-		super(BlockInit.EXP_WARD_BLOCK_ENTITY);
+		super(BlockInit.GROWTH_WARD_BLOCK_ENTITY);
 	}
    
 	@Override
@@ -18,7 +18,7 @@ public class ExpWardBlockEntity extends BlockEntity implements Tickable
 	{
 		if(!world.isClient && world.isReceivingRedstonePower(this.pos))
 		{
-			WardBlockEffects.giveExp(world, pos, 10.0D, 1);
+			WardBlockEffects.growCrops(world, pos, 360, 10);
 		}
 	}
 }

@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 public class WardBlocks implements ModInitializer
 {	
 	public static final String MOD_ID = "ward_blocks";
-	public static final ItemGroup WARD_BLOCKS_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "ward_blocks_group"), () -> new ItemStack(BlockInit.HEALTH_WARD_BLOCK));
+	public static final ItemGroup WARD_BLOCKS_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "ward_blocks_group"), () -> new ItemStack(BlockInit.DEFENSE_WARD_BLOCK));
 	
 	public static final WardBlocks INSTANCE = new WardBlocks();
 	
