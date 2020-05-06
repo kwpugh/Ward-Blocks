@@ -1,6 +1,6 @@
 package com.kwpugh.ward_blocks.blocks;
 
-import com.kwpugh.ward_blocks.blocks.blockentities.HealthWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.entities.HealthWardBlockEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;

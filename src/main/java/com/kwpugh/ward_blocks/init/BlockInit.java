@@ -7,12 +7,12 @@ import com.kwpugh.ward_blocks.blocks.ExpWardBlock;
 import com.kwpugh.ward_blocks.blocks.GrowthWardBlock;
 import com.kwpugh.ward_blocks.blocks.HealthWardBlock;
 import com.kwpugh.ward_blocks.blocks.LootWardBlock;
-import com.kwpugh.ward_blocks.blocks.blockentities.AttackWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.blockentities.DefenseWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.blockentities.ExpWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.blockentities.GrowthWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.blockentities.HealthWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.blockentities.LootWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.entities.AttackWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.entities.DefenseWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.entities.ExpWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.entities.GrowthWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.entities.HealthWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.entities.LootWardBlockEntity;
 
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -32,12 +32,12 @@ public class BlockInit
 	public static BlockEntityType<AttackWardBlockEntity> ATTACK_WARD_BLOCK_ENTITY;
 	public static BlockEntityType<LootWardBlockEntity> LOOT_WARD_BLOCK_ENTITY;
 	
-	public static final Block GROWTH_WARD_BLOCK = new GrowthWardBlock(FabricBlockSettings.of(Material.STONE).lightLevel(15).strength(3.0F, 3.0F).build());
-	public static final Block HEALTH_WARD_BLOCK = new HealthWardBlock(FabricBlockSettings.of(Material.STONE).lightLevel(15).strength(3.0F, 3.0F).build());
-	public static final Block DEFENSE_WARD_BLOCK = new DefenseWardBlock(FabricBlockSettings.of(Material.STONE).lightLevel(15).strength(3.0F, 3.0F).build());
-	public static final Block EXP_WARD_BLOCK = new ExpWardBlock(FabricBlockSettings.of(Material.STONE).lightLevel(15).strength(3.0F, 3.0F).build());
-	public static final Block ATTACK_WARD_BLOCK = new AttackWardBlock(FabricBlockSettings.of(Material.STONE).lightLevel(15).strength(3.0F, 3.0F).build());
-	public static final Block LOOT_WARD_BLOCK = new LootWardBlock(FabricBlockSettings.of(Material.STONE).lightLevel(15).strength(3.0F, 3.0F).build());
+	public static final Block GROWTH_WARD_BLOCK = new GrowthWardBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).build());
+	public static final Block HEALTH_WARD_BLOCK = new HealthWardBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).build());
+	public static final Block DEFENSE_WARD_BLOCK = new DefenseWardBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).build());
+	public static final Block EXP_WARD_BLOCK = new ExpWardBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).build());
+	public static final Block ATTACK_WARD_BLOCK = new AttackWardBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).build());
+	public static final Block LOOT_WARD_BLOCK = new LootWardBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 3.0F).build());
 	
 	public static void registerBlocks()
 	{
@@ -51,12 +51,12 @@ public class BlockInit
 	
 	public static void registerBlockItems()
 	{
-		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "growth_ward_block"), new BlockItem(GROWTH_WARD_BLOCK, new Item.Settings().group(WardBlocks.WARD_BLOCKS_GROUP)));
-		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "health_ward_block"), new BlockItem(HEALTH_WARD_BLOCK, new Item.Settings().group(WardBlocks.WARD_BLOCKS_GROUP)));
-		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "defense_ward_block"), new BlockItem(DEFENSE_WARD_BLOCK, new Item.Settings().group(WardBlocks.WARD_BLOCKS_GROUP)));
-		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "exp_ward_block"), new BlockItem(EXP_WARD_BLOCK, new Item.Settings().group(WardBlocks.WARD_BLOCKS_GROUP)));
-		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "attack_ward_block"), new BlockItem(ATTACK_WARD_BLOCK, new Item.Settings().group(WardBlocks.WARD_BLOCKS_GROUP)));		
-		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "loot_ward_block"), new BlockItem(LOOT_WARD_BLOCK, new Item.Settings().group(WardBlocks.WARD_BLOCKS_GROUP)));
+		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "growth_ward_block"), new BlockItem(GROWTH_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
+		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "health_ward_block"), new BlockItem(HEALTH_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
+		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "defense_ward_block"), new BlockItem(DEFENSE_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
+		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "exp_ward_block"), new BlockItem(EXP_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
+		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "attack_ward_block"), new BlockItem(ATTACK_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));		
+		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "loot_ward_block"), new BlockItem(LOOT_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
 	}
 	
 	public static void registerBlockEntities()

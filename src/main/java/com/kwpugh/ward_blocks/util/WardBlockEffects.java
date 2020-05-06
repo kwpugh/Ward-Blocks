@@ -3,8 +3,6 @@ package com.kwpugh.ward_blocks.util;
 import java.util.Iterator;
 import java.util.List;
 
-import com.kwpugh.ward_blocks.blocks.blockentities.LootWardBlockEntity;
-
 import net.minecraft.block.BambooBlock;
 import net.minecraft.block.BambooSaplingBlock;
 import net.minecraft.block.Block;
@@ -48,9 +46,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
 public class WardBlockEffects
-{	
-	
-	
+{		
 	// Removes most mobs and spawns defined loot above block
 	public static void giveLoot(World world, BlockPos pos, double radius)
 	{
@@ -120,10 +116,8 @@ public class WardBlockEffects
 				{
 					drop = new ItemStack(Items.IRON_NUGGET);				
 				}
-				//world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), drop));
 				
-				
-				
+				world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), drop));
 			}
 		}
 	}
