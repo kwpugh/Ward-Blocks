@@ -13,6 +13,6 @@ public class ItemInit
 	
 	public static void registerItems()
 	{		 
-		Registry.register(Registry.ITEM, new Identifier("ward_blocks", "carbonado"), CARBONADO);
+		//Registry.register(Registry.ITEM, new Identifier("ward_blocks", "carbonado"), CARBONADO);
 	}
 }

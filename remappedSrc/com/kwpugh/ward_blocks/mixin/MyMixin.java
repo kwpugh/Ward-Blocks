@@ -5,12 +5,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.entity.LivingEntity;
 
-@Mixin(TitleScreen.class)
-public class MyMixin {
-	@Inject(at = @At("HEAD"), method = "init()V")
-	private void init(CallbackInfo info) {
-		System.out.println("This line is printed by an example mod mixin!");
+@Mixin(LivingEntity.class)
+public class MyMixin
+{
+	
+	@Inject(at = @At("HEAD"), method = "tick")
+	public void tick(CallbackInfo ci)
+	{
+		// TBD
 	}
 }

@@ -1,8 +1,12 @@
 package com.kwpugh.ward_blocks;
 
+import com.kwpugh.ward_blocks.config.WardBlocksConfig;
 import com.kwpugh.ward_blocks.init.BlockInit;
 import com.kwpugh.ward_blocks.init.ItemInit;
+import com.kwpugh.ward_blocks.util.WardBlocksLootTables;
 
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
+import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -19,10 +23,19 @@ public class WardBlocks implements ModInitializer
     @Override
     public void onInitialize()
     {
+    	AutoConfig.register(WardBlocksConfig.class, GsonConfigSerializer::new);
+    	
     	BlockInit.registerBlocks();
     	BlockInit.registerBlockItems();
     	BlockInit.registerBlockEntities();
     	
     	ItemInit.registerItems();
+    	
+    	WardBlocksLootTables.init();
+    }
+    
+    public static WardBlocksConfig getConfig()
+    {
+        return AutoConfig.getConfigHolder(WardBlocksConfig.class).getConfig();
     }
 }

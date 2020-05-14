@@ -1,15 +1,15 @@
 package com.kwpugh.ward_blocks.blocks;
 
-import com.kwpugh.ward_blocks.blocks.entities.HealthWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.entities.ExpWardBlockEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.world.BlockView;
 
-public class HealthWardBlock extends Block implements BlockEntityProvider
+public class ExpWardBlock extends Block implements BlockEntityProvider
 {
-	public HealthWardBlock(Settings settings)
+	public ExpWardBlock(Settings settings)
 	{
 		super(settings);
 	}
@@ -17,6 +17,6 @@ public class HealthWardBlock extends Block implements BlockEntityProvider
 	@Override
 	public BlockEntity createBlockEntity(BlockView blockView)
 	{
-		return new HealthWardBlockEntity();
-	} 
+		return new ExpWardBlockEntity();
+	}
 }
