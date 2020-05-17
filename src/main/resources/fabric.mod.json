@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "ward_blocks",
-  "version": "1.0.0",
+  "version": "1.0.2",
 
   "name": "Ward Blocks",
   "description": "Adds blocks that provide various ward effects",
@@ -14,7 +14,7 @@
     "sources": ""
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
   "icon": "assets/ward_blocks/textures/block/defense_block.png",
 
   "environment": "*",

@@ -23,9 +23,9 @@ public class WardBlocksLootTables
 	public static void init()
 	{
 		FabricLootPoolBuilder GROWTH_WARD_BLOCK = FabricLootPoolBuilder.builder()
-				.withRolls(ConstantLootTableRange.create(1))
-				.withEntry(ItemEntry.builder(BlockInit.GROWTH_WARD_BLOCK))
-				.withCondition(RandomChanceLootCondition.builder(0.10F).build());
+				.rolls(ConstantLootTableRange.create(1))
+				.with(ItemEntry.builder(BlockInit.GROWTH_WARD_BLOCK))
+				.withCondition(RandomChanceLootCondition.builder(0.05F).build());
 
 		insert(new LootTableInsert(GROWTH_WARD_BLOCK,
 				new Identifier("minecraft", "chests/buried_treasure")
@@ -41,9 +41,9 @@ public class WardBlocksLootTables
 		}));
 		
 		FabricLootPoolBuilder HEALTH_WARD_BLOCK = FabricLootPoolBuilder.builder()
-				.withRolls(ConstantLootTableRange.create(1))
-				.withEntry(ItemEntry.builder(BlockInit.HEALTH_WARD_BLOCK))
-				.withCondition(RandomChanceLootCondition.builder(0.10F).build());
+				.rolls(ConstantLootTableRange.create(1))
+				.with(ItemEntry.builder(BlockInit.HEALTH_WARD_BLOCK))
+				.withCondition(RandomChanceLootCondition.builder(0.05F).build());
 
 		insert(new LootTableInsert(HEALTH_WARD_BLOCK,
 				new Identifier("minecraft", "chests/buried_treasure")
@@ -59,9 +59,9 @@ public class WardBlocksLootTables
 		}));
 		
 		FabricLootPoolBuilder DEFENSE_WARD_BLOCK = FabricLootPoolBuilder.builder()
-				.withRolls(ConstantLootTableRange.create(1))
-				.withEntry(ItemEntry.builder(BlockInit.DEFENSE_WARD_BLOCK))
-				.withCondition(RandomChanceLootCondition.builder(0.10F).build());
+				.rolls(ConstantLootTableRange.create(1))
+				.with(ItemEntry.builder(BlockInit.DEFENSE_WARD_BLOCK))
+				.withCondition(RandomChanceLootCondition.builder(0.05F).build());
 
 		insert(new LootTableInsert(DEFENSE_WARD_BLOCK,
 				new Identifier("minecraft", "chests/pillager_outpost")
@@ -77,8 +77,8 @@ public class WardBlocksLootTables
 		}));
 		
 		FabricLootPoolBuilder EXP_WARD_BLOCK = FabricLootPoolBuilder.builder()
-				.withRolls(ConstantLootTableRange.create(1))
-				.withEntry(ItemEntry.builder(BlockInit.EXP_WARD_BLOCK))
+				.rolls(ConstantLootTableRange.create(1))
+				.with(ItemEntry.builder(BlockInit.EXP_WARD_BLOCK))
 				.withCondition(RandomChanceLootCondition.builder(0.10F).build());
 
 		insert(new LootTableInsert(EXP_WARD_BLOCK,
@@ -95,8 +95,8 @@ public class WardBlocksLootTables
 		}));
 
 		FabricLootPoolBuilder ATTACK_WARD_BLOCK = FabricLootPoolBuilder.builder()
-				.withRolls(ConstantLootTableRange.create(1))
-				.withEntry(ItemEntry.builder(BlockInit.ATTACK_WARD_BLOCK))
+				.rolls(ConstantLootTableRange.create(1))
+				.with(ItemEntry.builder(BlockInit.ATTACK_WARD_BLOCK))
 				.withCondition(RandomChanceLootCondition.builder(0.10F).build());
 
 		insert(new LootTableInsert(ATTACK_WARD_BLOCK,
@@ -113,8 +113,8 @@ public class WardBlocksLootTables
 		}));
 
 		FabricLootPoolBuilder LOOT_WARD_BLOCK = FabricLootPoolBuilder.builder()
-				.withRolls(ConstantLootTableRange.create(1))
-				.withEntry(ItemEntry.builder(BlockInit.LOOT_WARD_BLOCK))
+				.rolls(ConstantLootTableRange.create(1))
+				.with(ItemEntry.builder(BlockInit.LOOT_WARD_BLOCK))
 				.withCondition(RandomChanceLootCondition.builder(0.10F).build());
 
 		insert(new LootTableInsert(LOOT_WARD_BLOCK,
@@ -150,7 +150,7 @@ public class WardBlocksLootTables
 
 		public void insert(FabricLootSupplierBuilder supplier)
 		{
-			supplier.withPool(lootPool);
+			supplier.pool(lootPool);
 		}
 	}
 }
