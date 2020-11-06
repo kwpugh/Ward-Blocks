@@ -19,47 +19,8 @@ public class WardBlocksLootTables
 {
 	private static final List<LootTableInsert> INSERTS = Lists.newArrayList();
 
-
 	public static void init()
-	{
-//    Samples of doing other kinds of drops		
-//		FabricLootPoolBuilder COW_DROP = FabricLootPoolBuilder.builder()
-//				.rolls(ConstantLootTableRange.create(1))
-//				.with(ItemEntry.builder(Items.DIAMOND))
-//				.withCondition(RandomChanceLootCondition.builder(0.05F).build());
-//
-//		insert(new LootTableInsert(COW_DROP,
-//				new Identifier("minecraft", "entities/cow")
-//		));
-//		
-//		LootTableLoadingCallback.EVENT.register(((resourceManager, lootManager, identifier, supplier, lootTableSetter) -> {
-//			INSERTS.forEach(i->{
-//				if(ArrayUtils.contains(i.tables, identifier))
-//				{
-//					i.insert(supplier);
-//				}
-//			});
-//		}));
-//		
-//		FabricLootPoolBuilder GUNPOWDER_DROP = FabricLootPoolBuilder.builder()
-//				.rolls(ConstantLootTableRange.create(1))
-//				.with(ItemEntry.builder(Items.GUNPOWDER))
-//				.withCondition(RandomChanceLootCondition.builder(0.95F).build());
-//
-//		insert(new LootTableInsert(GUNPOWDER_DROP,
-//				new Identifier("minecraft", "blocks/netherrack")
-//		));
-//		
-//		LootTableLoadingCallback.EVENT.register(((resourceManager, lootManager, identifier, supplier, lootTableSetter) -> {
-//			INSERTS.forEach(i->{
-//				if(ArrayUtils.contains(i.tables, identifier))
-//				{
-//					i.insert(supplier);
-//				}
-//			});
-//		}));
-		
-		
+	{		
 		FabricLootPoolBuilder GROWTH_WARD_BLOCK = FabricLootPoolBuilder.builder()
 				.rolls(ConstantLootTableRange.create(1))
 				.with(ItemEntry.builder(BlockInit.GROWTH_WARD_BLOCK))
@@ -77,6 +38,9 @@ public class WardBlocksLootTables
 				}
 			});
 		}));
+		
+		
+		
 		
 		FabricLootPoolBuilder HEALTH_WARD_BLOCK = FabricLootPoolBuilder.builder()
 				.rolls(ConstantLootTableRange.create(1))
@@ -96,6 +60,8 @@ public class WardBlocksLootTables
 			});
 		}));
 		
+		
+		
 		FabricLootPoolBuilder DEFENSE_WARD_BLOCK = FabricLootPoolBuilder.builder()
 				.rolls(ConstantLootTableRange.create(1))
 				.with(ItemEntry.builder(BlockInit.DEFENSE_WARD_BLOCK))
@@ -113,6 +79,9 @@ public class WardBlocksLootTables
 				}
 			});
 		}));
+		
+		
+		
 		
 		FabricLootPoolBuilder EXP_WARD_BLOCK = FabricLootPoolBuilder.builder()
 				.rolls(ConstantLootTableRange.create(1))
@@ -132,6 +101,9 @@ public class WardBlocksLootTables
 			});
 		}));
 
+		
+		
+		
 		FabricLootPoolBuilder ATTACK_WARD_BLOCK = FabricLootPoolBuilder.builder()
 				.rolls(ConstantLootTableRange.create(1))
 				.with(ItemEntry.builder(BlockInit.ATTACK_WARD_BLOCK))
@@ -150,6 +122,9 @@ public class WardBlocksLootTables
 			});
 		}));
 
+		
+		
+		
 		FabricLootPoolBuilder LOOT_WARD_BLOCK = FabricLootPoolBuilder.builder()
 				.rolls(ConstantLootTableRange.create(1))
 				.with(ItemEntry.builder(BlockInit.LOOT_WARD_BLOCK))
