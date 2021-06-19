@@ -9,8 +9,8 @@ import net.minecraft.util.Tickable;
 
 public class AttackWardBlockEntity extends BlockEntity implements Tickable
 {	
-	static int attackRadius = WardBlocks.getConfig().ATTACK.attackRadius;
-	static float damageAmount = WardBlocks.getConfig().ATTACK.damageAmount;
+	static int attackRadius = WardBlocks.CONFIG.GENERAL.attackRadius;
+	static float damageAmount = WardBlocks.CONFIG.GENERAL.damageAmount;
 	
 	public AttackWardBlockEntity()
 	{

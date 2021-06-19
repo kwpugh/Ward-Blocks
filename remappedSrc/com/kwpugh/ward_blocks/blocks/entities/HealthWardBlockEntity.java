@@ -9,9 +9,9 @@ import net.minecraft.util.Tickable;
 
 public class HealthWardBlockEntity extends BlockEntity implements Tickable
 {
-	static int healthRadius = WardBlocks.getConfig().HEALTH.healthRadius;
-	static int healthLevel = WardBlocks.getConfig().HEALTH.healthLevel;
-	static float healthYellowHearts = WardBlocks.getConfig().HEALTH.healthYellowHearts;
+	static int healthRadius = WardBlocks.CONFIG.GENERAL.healthRadius;
+	static int healthLevel = WardBlocks.CONFIG.GENERAL.healthLevel;
+	static float healthYellowHearts = WardBlocks.CONFIG.GENERAL.healthYellowHearts;
 	
 	public HealthWardBlockEntity()
 	{

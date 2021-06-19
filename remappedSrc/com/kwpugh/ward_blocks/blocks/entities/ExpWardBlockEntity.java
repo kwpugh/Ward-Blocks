@@ -9,8 +9,8 @@ import net.minecraft.util.Tickable;
 
 public class ExpWardBlockEntity extends BlockEntity implements Tickable
 {	
-	static int expRadius = WardBlocks.getConfig().EXP.expRadius;
-	static int expLevel = WardBlocks.getConfig().EXP.expLevel;
+	static int expRadius = WardBlocks.CONFIG.GENERAL.expRadius;
+	static int expLevel = WardBlocks.CONFIG.GENERAL.expLevel;
 	
 	public ExpWardBlockEntity()
 	{

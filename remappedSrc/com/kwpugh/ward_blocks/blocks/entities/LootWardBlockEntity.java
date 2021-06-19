@@ -9,7 +9,7 @@ import net.minecraft.util.Tickable;
 
 public class LootWardBlockEntity extends BlockEntity implements Tickable
 {
-	static int lootRadius = WardBlocks.getConfig().LOOT.lootRadius;
+	static int lootRadius = WardBlocks.CONFIG.GENERAL.lootRadius;
 	
 	public LootWardBlockEntity()
 	{

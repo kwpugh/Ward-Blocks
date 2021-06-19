@@ -9,7 +9,7 @@ import net.minecraft.util.Tickable;
 
 public class GrowthWardBlockEntity extends BlockEntity implements Tickable
 {	
-	static int growthRadius = WardBlocks.getConfig().GROWTH.growthRange;
+	static int growthRadius = WardBlocks.CONFIG.GENERAL.growthRange;
 	
 	public GrowthWardBlockEntity()
 	{

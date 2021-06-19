@@ -9,8 +9,8 @@ import net.minecraft.util.Tickable;
 
 public class DefenseWardBlockEntity extends BlockEntity implements Tickable
 {	
-	static int defenseRadius = WardBlocks.getConfig().DEFENSE.defenseRadius;
-	static int defenseLevel = WardBlocks.getConfig().DEFENSE.defenseLevel;
+	static int defenseRadius = WardBlocks.CONFIG.GENERAL.defenseRadius;
+	static int defenseLevel = WardBlocks.CONFIG.GENERAL.defenseLevel;
 	
 	public DefenseWardBlockEntity()
 	{

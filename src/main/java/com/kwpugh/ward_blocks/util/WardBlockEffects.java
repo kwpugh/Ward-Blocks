@@ -3,21 +3,8 @@ package com.kwpugh.ward_blocks.util;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.block.BambooBlock;
-import net.minecraft.block.BambooSaplingBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CactusBlock;
-import net.minecraft.block.ChorusFlowerBlock;
-import net.minecraft.block.CocoaBlock;
-import net.minecraft.block.CropBlock;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.block.FungusBlock;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.SeaPickleBlock;
-import net.minecraft.block.StemBlock;
-import net.minecraft.block.SugarCaneBlock;
-import net.minecraft.block.SweetBerryBushBlock;
+import com.kwpugh.ward_blocks.WardBlocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -63,7 +50,7 @@ public class WardBlockEffects
 			targetEntity = (Entity)iterator2.next();
 			if(targetEntity instanceof HostileEntity)
 			{				
-				targetEntity.remove();
+				targetEntity.remove(Entity.RemovalReason.KILLED);
 				((HostileEntity) targetEntity).playSpawnEffects();
 				
 				ItemStack drop;
@@ -138,7 +125,7 @@ public class WardBlockEffects
 			targetEntity = (Entity)iterator2.next();
 			if(targetEntity instanceof HostileEntity)
 			{				
-				targetEntity.remove();
+				targetEntity.remove(Entity.RemovalReason.KILLED);
 				((HostileEntity) targetEntity).playSpawnEffects();
 				world.spawnEntity(new ExperienceOrbEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), 1));
 			}
@@ -196,13 +183,13 @@ public class WardBlockEffects
 	}
 	
 	//  Accelerates growth in area of effect
-	public static void growCrops(World world, BlockPos pos, int baseTickDelay, int radius)
+	public static void growCrops(World world, BlockPos pos, int baseTickDelay, int cactusTickDelay, int radius, int height)
 	{
 		ServerWorld serverWorld = (ServerWorld) world;
-	
+
 		BlockPos growthBlock = pos;
 	
-		for (BlockPos target : BlockPos.iterateOutwards(growthBlock, radius, 5, radius))
+		for (BlockPos target : BlockPos.iterateOutwards(growthBlock, radius, height, radius))
 		{
 			BlockState blockstate = world.getBlockState(target);
 			Block block = blockstate.getBlock();
@@ -215,7 +202,9 @@ public class WardBlockEffects
 					block instanceof SweetBerryBushBlock ||
 					block instanceof FungusBlock ||
 					block instanceof SaplingBlock ||
-					block instanceof SeaPickleBlock 
+					block instanceof SeaPickleBlock ||
+					block instanceof KelpBlock ||
+					block instanceof KelpPlantBlock
 					)
 			{
 				Fertilizable fertilizable = (Fertilizable)blockstate.getBlock();
@@ -232,7 +221,7 @@ public class WardBlockEffects
 			}
 		}
 		
-		for (BlockPos tickTarget : BlockPos.iterateOutwards(growthBlock, radius, 5, radius))
+		for (BlockPos tickTarget : BlockPos.iterateOutwards(growthBlock, radius, height, radius))
 		{
 			BlockState blockstate2 = world.getBlockState(tickTarget);
 			Block blockToTick = blockstate2.getBlock();
@@ -241,7 +230,7 @@ public class WardBlockEffects
 					blockToTick instanceof CactusBlock ||
 					blockToTick instanceof ChorusFlowerBlock)   
 			{
-				if (world.getTime() % (baseTickDelay / 16) == 0)
+				if (world.getTime() % (cactusTickDelay) == 0)
 				{
 					blockToTick.randomTick(blockstate2, (ServerWorld) world, tickTarget, world.random);
 				}				

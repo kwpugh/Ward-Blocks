@@ -25,12 +25,12 @@ import net.minecraft.util.registry.Registry;
 
 public class BlockInit
 {
-	static boolean enableGrowth = WardBlocks.getConfig().BLOCKS.enableGrowthBlock;
-	static boolean enableHealth = WardBlocks.getConfig().BLOCKS.enableHealthBlock;
-	static boolean enableDefense = WardBlocks.getConfig().BLOCKS.enableDefenseBlock;
-	static boolean enableExp = WardBlocks.getConfig().BLOCKS.enableExpBlock;
-	static boolean enableAttack = WardBlocks.getConfig().BLOCKS.enableAttackBlock;
-	static boolean enableLoot = WardBlocks.getConfig().BLOCKS.enableLootBlock;
+	static boolean enableGrowth = WardBlocks.CONFIG.GENERAL.enableGrowthBlock;
+	static boolean enableHealth = WardBlocks.CONFIG.GENERAL.enableHealthBlock;
+	static boolean enableDefense = WardBlocks.CONFIG.GENERAL.enableDefenseBlock;
+	static boolean enableExp = WardBlocks.CONFIG.GENERAL.enableExpBlock;
+	static boolean enableAttack = WardBlocks.CONFIG.GENERAL.enableAttackBlock;
+	static boolean enableLoot = WardBlocks.CONFIG.GENERAL.enableLootBlock;
 	
 	public static BlockEntityType<GrowthWardBlockEntity> GROWTH_WARD_BLOCK_ENTITY;
 	public static BlockEntityType<HealthWardBlockEntity> HEALTH_WARD_BLOCK_ENTITY;
