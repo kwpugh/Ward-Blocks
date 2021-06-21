@@ -13,6 +13,7 @@ public class DefenseWardBlockEntity extends BlockEntity
 {
 	static int defenseRadius = WardBlocks.CONFIG.GENERAL.defenseRadius;
 	static int defenseLevel = WardBlocks.CONFIG.GENERAL.defenseLevel;
+    static int effectTickInterval = WardBlocks.CONFIG.GENERAL.effectTickInterval;
 
     public DefenseWardBlockEntity(BlockPos pos, BlockState state)
     {
@@ -23,7 +24,7 @@ public class DefenseWardBlockEntity extends BlockEntity
     {
         if(!world.isClient && world.isReceivingRedstonePower(pos))
         {
-            WardBlockEffects.giveDefense(world, pos, defenseRadius, defenseLevel);
+            WardBlockEffects.giveDefense(world, pos, defenseRadius, defenseLevel, effectTickInterval);
         }
     }
 }

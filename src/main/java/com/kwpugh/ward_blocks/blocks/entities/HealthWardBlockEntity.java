@@ -14,6 +14,8 @@ public class HealthWardBlockEntity extends BlockEntity
 	static int healthRadius = WardBlocks.CONFIG.GENERAL.healthRadius;
 	static int healthLevel = WardBlocks.CONFIG.GENERAL.healthLevel;
 	static float healthYellowHearts = WardBlocks.CONFIG.GENERAL.healthYellowHearts;
+    static int effectTickInterval = WardBlocks.CONFIG.GENERAL.effectTickInterval;
+    static boolean enableExtraHearts = WardBlocks.CONFIG.GENERAL.enableYellowHearts;
 
     public HealthWardBlockEntity(BlockPos pos, BlockState state)
     {
@@ -24,7 +26,7 @@ public class HealthWardBlockEntity extends BlockEntity
     {
         if(!world.isClient && world.isReceivingRedstonePower(pos))
         {
-            WardBlockEffects.giveHealth(world, pos, healthRadius, healthLevel, healthYellowHearts);
+            WardBlockEffects.giveHealth(world, pos, healthRadius, healthLevel, effectTickInterval, enableExtraHearts, healthYellowHearts);
         }
     }
 }

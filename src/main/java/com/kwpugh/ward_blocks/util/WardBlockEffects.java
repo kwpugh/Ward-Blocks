@@ -3,7 +3,6 @@ package com.kwpugh.ward_blocks.util;
 import java.util.Iterator;
 import java.util.List;
 
-import com.kwpugh.ward_blocks.WardBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -159,7 +158,7 @@ public class WardBlockEffects
 	}
 	
 	// Gives player strength and resistance
-	public static void giveDefense(World world, BlockPos pos, int radius, int effectLevel)
+	public static void giveDefense(World world, BlockPos pos, int radius, int effectLevel, int effectTickInterval)
 	{
 		// Scan for players in range
 		Box playerBox = (new Box(pos)).expand(radius, 8.0D, radius);
@@ -168,14 +167,13 @@ public class WardBlockEffects
 		
 		ServerPlayerEntity targetPlayer;
 
-		
 		// Cycle through list and give effects to players				
 		while(iterator1.hasNext())
 		{
 			targetPlayer = (ServerPlayerEntity)iterator1.next();
-			
-			StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.RESISTANCE, 8, effectLevel, false, false);
-			StatusEffectInstance effect2 = new StatusEffectInstance(StatusEffects.STRENGTH, 8, effectLevel, false, false);
+
+			StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.RESISTANCE, effectTickInterval, effectLevel, false, false);
+			StatusEffectInstance effect2 = new StatusEffectInstance(StatusEffects.STRENGTH, effectTickInterval, effectLevel, false, false);
 
 			targetPlayer.addStatusEffect(effect);
 			targetPlayer.addStatusEffect(effect2);
@@ -239,7 +237,7 @@ public class WardBlockEffects
 	}
 	
 	// Gives player heal, regeneration, and yellow hearts
-	public static void giveHealth(World world, BlockPos pos, int radius, int effectLevel, float yellowHearts)
+	public static void giveHealth(World world, BlockPos pos, int radius, int effectLevel, int effectTickInterval, boolean enableExtraHearts, float yellowHearts)
 	{
 		// Scan for players in range
 		Box playerBox = (new Box(pos)).expand(radius, 4, radius);
@@ -253,13 +251,16 @@ public class WardBlockEffects
 		{
 			targetPlayer = (ServerPlayerEntity)iterator1.next();
 			
-			StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.REGENERATION, 8, effectLevel, false, false);
-			StatusEffectInstance effect2 = new StatusEffectInstance(StatusEffects.SATURATION, 8, effectLevel, false, false);
+			StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.REGENERATION, effectTickInterval, effectLevel, false, false);
+			StatusEffectInstance effect2 = new StatusEffectInstance(StatusEffects.SATURATION, effectTickInterval, effectLevel, false, false);
 
 			targetPlayer.addStatusEffect(effect);
 			targetPlayer.addStatusEffect(effect2);
-			
-			giveGreaterExtraHearts(world, targetPlayer, yellowHearts);
+
+			if(enableExtraHearts)
+			{
+				giveGreaterExtraHearts(world, targetPlayer, yellowHearts);
+			}
 		}
 	}
 	

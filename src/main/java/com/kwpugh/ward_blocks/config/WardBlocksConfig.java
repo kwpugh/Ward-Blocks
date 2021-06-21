@@ -49,7 +49,9 @@ public class WardBlocksConfig extends PartitioningSerializer.GlobalData
 				+ "\n***********************")
 		public int healthRadius = 12;
 		public int healthLevel = 0;
+		public boolean enableYellowHearts = true;
 		public float healthYellowHearts = 20;
+		public int effectTickInterval = 8;
 
 		@Comment("\n"
 				+ "\n"
