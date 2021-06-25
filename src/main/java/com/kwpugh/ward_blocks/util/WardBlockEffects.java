@@ -186,7 +186,8 @@ public class WardBlockEffects
 		ServerWorld serverWorld = (ServerWorld) world;
 
 		BlockPos growthBlock = pos;
-	
+
+		// For blocks that use a grow() method and implement Fertilizable
 		for (BlockPos target : BlockPos.iterateOutwards(growthBlock, radius, height, radius))
 		{
 			BlockState blockstate = world.getBlockState(target);
@@ -218,7 +219,8 @@ public class WardBlockEffects
 				}
 			}
 		}
-		
+
+		// For those blocks that lack grow() we fall back to randomTick()
 		for (BlockPos tickTarget : BlockPos.iterateOutwards(growthBlock, radius, height, radius))
 		{
 			BlockState blockstate2 = world.getBlockState(tickTarget);
@@ -226,7 +228,8 @@ public class WardBlockEffects
 				
 			if(blockToTick instanceof SugarCaneBlock || 
 					blockToTick instanceof CactusBlock ||
-					blockToTick instanceof ChorusFlowerBlock)   
+					blockToTick instanceof ChorusFlowerBlock
+					)
 			{
 				if (world.getTime() % (cactusTickDelay) == 0)
 				{
