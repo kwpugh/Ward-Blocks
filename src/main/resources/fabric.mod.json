@@ -9,9 +9,9 @@
     "Kevin Pugh"
   ],
   "contact": {
-    "homepage": "",
-    "issues": "",
-    "sources": ""
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/ward-blocks-fabric",
+    "issues": "https://github.com/kwpugh/Ward-Blocks/issues",
+    "sources": "https://github.com/kwpugh/Ward-Blocks"
   },
 
   "license": "MIT",
