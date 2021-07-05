@@ -75,6 +75,7 @@ public class WardBlocksConfig extends PartitioningSerializer.GlobalData
 				+ "\nLoot Ward"
 				+ "\n***********************")
 		public int lootRadius = 16;
+		public boolean skipNamedSilverFish = false;
 
 
 	}

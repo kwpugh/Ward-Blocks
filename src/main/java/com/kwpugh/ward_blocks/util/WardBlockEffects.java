@@ -3,6 +3,7 @@ package com.kwpugh.ward_blocks.util;
 import java.util.Iterator;
 import java.util.List;
 
+import com.kwpugh.ward_blocks.WardBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -11,18 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.BlazeEntity;
-import net.minecraft.entity.mob.CreeperEntity;
-import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.PatrolEntity;
-import net.minecraft.entity.mob.PhantomEntity;
-import net.minecraft.entity.mob.SkeletonEntity;
-import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.entity.mob.SpiderEntity;
-import net.minecraft.entity.mob.WitchEntity;
-import net.minecraft.entity.mob.WitherSkeletonEntity;
-import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.entity.mob.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -32,7 +22,9 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
 public class WardBlockEffects
-{		
+{
+	static boolean skippedSilverFish = WardBlocks.CONFIG.GENERAL.skipNamedSilverFish;
+
 	// Removes most mobs and spawns defined loot above block
 	public static void giveLoot(World world, BlockPos pos, int radius)
 	{
@@ -43,66 +35,69 @@ public class WardBlockEffects
 		
 		Entity targetEntity;
 		
-		// Cycle through and spawn loot and XP
+		// Cycle through, kill the mob and spawn loot and XP
 		while(iterator2.hasNext())
 		{
 			targetEntity = (Entity)iterator2.next();
 			if(targetEntity instanceof HostileEntity)
-			{				
+			{
+				//Special case for named silverfish used for endermen farms
+				if( targetEntity instanceof SilverfishEntity  && skippedSilverFish && targetEntity.getCustomName() != null ) break;
+
 				targetEntity.remove(Entity.RemovalReason.KILLED);
 				((HostileEntity) targetEntity).playSpawnEffects();
-				
+
 				ItemStack drop;
-				
+
 				if(targetEntity instanceof ZombieEntity)
 				{
-					drop = new ItemStack(Items.GOLD_INGOT);				
+					drop = new ItemStack(Items.GOLD_INGOT);
 				}
 				else if(targetEntity instanceof SpiderEntity)
 				{
-					drop = new ItemStack(Items.STRING);				
+					drop = new ItemStack(Items.STRING);
 				}
 				else if(targetEntity instanceof SkeletonEntity)
 				{
-					drop = new ItemStack(Items.BONE);				
+					drop = new ItemStack(Items.BONE);
 				}
 				else if(targetEntity instanceof PatrolEntity)
 				{
-					drop = new ItemStack(Items.IRON_INGOT);				
+					drop = new ItemStack(Items.IRON_INGOT);
 				}
 				else if(targetEntity instanceof CreeperEntity)
 				{
-					drop = new ItemStack(Items.GUNPOWDER);				
-				}				
+					drop = new ItemStack(Items.GUNPOWDER);
+				}
 				else if(targetEntity instanceof SlimeEntity)
 				{
-					drop = new ItemStack(Items.SLIME_BALL);				
+					drop = new ItemStack(Items.SLIME_BALL);
 				}
 				else if(targetEntity instanceof WitchEntity)
 				{
-					drop = new ItemStack(Items.EMERALD);				
+					drop = new ItemStack(Items.EMERALD);
 				}
 				else if(targetEntity instanceof EndermanEntity)
 				{
-					drop = new ItemStack(Items.ENDER_PEARL);				
+					drop = new ItemStack(Items.ENDER_PEARL);
 				}
 				else if(targetEntity instanceof BlazeEntity)
 				{
-					drop = new ItemStack(Items.BLAZE_ROD);				
+					drop = new ItemStack(Items.BLAZE_ROD);
 				}
 				else if(targetEntity instanceof WitherSkeletonEntity)
 				{
-					drop = new ItemStack(Items.WITHER_SKELETON_SKULL);				
+					drop = new ItemStack(Items.WITHER_SKELETON_SKULL);
 				}
 				else if(targetEntity instanceof PhantomEntity)
 				{
-					drop = new ItemStack(Items.PHANTOM_MEMBRANE);				
+					drop = new ItemStack(Items.PHANTOM_MEMBRANE);
 				}
 				else
 				{
-					drop = new ItemStack(Items.IRON_NUGGET);				
+					drop = new ItemStack(Items.IRON_NUGGET);
 				}
-				
+
 				world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), drop));
 			}
 		}
