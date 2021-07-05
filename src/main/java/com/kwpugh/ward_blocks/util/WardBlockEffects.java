@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 public class WardBlockEffects
 {
-	static boolean skippedSilverFish = WardBlocks.CONFIG.GENERAL.skipNamedSilverFish;
+	static boolean skippedEndermite = WardBlocks.CONFIG.GENERAL.skipNamedEndermite;
 
 	// Removes most mobs and spawns defined loot above block
 	public static void giveLoot(World world, BlockPos pos, int radius)
@@ -41,8 +41,8 @@ public class WardBlockEffects
 			targetEntity = (Entity)iterator2.next();
 			if(targetEntity instanceof HostileEntity)
 			{
-				//Special case for named silverfish used for endermen farms
-				if( targetEntity instanceof SilverfishEntity  && skippedSilverFish && targetEntity.getCustomName() != null ) break;
+				//Special case for named endermite used for endermen farms
+				if( targetEntity instanceof EndermiteEntity  && skippedEndermite && targetEntity.getCustomName() != null ) break;
 
 				targetEntity.remove(Entity.RemovalReason.KILLED);
 				((HostileEntity) targetEntity).playSpawnEffects();
@@ -118,7 +118,10 @@ public class WardBlockEffects
 		{
 			targetEntity = (Entity)iterator2.next();
 			if(targetEntity instanceof HostileEntity)
-			{				
+			{
+				//Special case for named endermite used for endermen farms
+				if( targetEntity instanceof EndermiteEntity  && skippedEndermite && targetEntity.getCustomName() != null ) break;
+
 				targetEntity.remove(Entity.RemovalReason.KILLED);
 				((HostileEntity) targetEntity).playSpawnEffects();
 				world.spawnEntity(new ExperienceOrbEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), 1));
