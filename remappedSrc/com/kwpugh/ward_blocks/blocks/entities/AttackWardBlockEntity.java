@@ -4,23 +4,24 @@ import com.kwpugh.ward_blocks.WardBlocks;
 import com.kwpugh.ward_blocks.init.BlockInit;
 import com.kwpugh.ward_blocks.util.WardBlockEffects;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.Tickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class AttackWardBlockEntity extends BlockEntity implements Tickable
-{	
+public class AttackWardBlockEntity extends BlockEntity
+{
 	static int attackRadius = WardBlocks.CONFIG.GENERAL.attackRadius;
 	static float damageAmount = WardBlocks.CONFIG.GENERAL.damageAmount;
-	
-	public AttackWardBlockEntity()
+
+	public AttackWardBlockEntity(BlockPos pos, BlockState state)
 	{
-		super(BlockInit.ATTACK_WARD_BLOCK_ENTITY);
+		super(BlockInit.ATTACK_WARD_BLOCK_ENTITY, pos, state);
 	}
-   
-	@Override
-	public void tick()
+
+	public static void tick(World world, BlockPos pos, BlockState state, BlockEntity be)
 	{
-		if(!world.isClient && world.isReceivingRedstonePower(this.pos))
+		if(!world.isClient && world.isReceivingRedstonePower(pos))
 		{
 			WardBlockEffects.attackMobs(world, pos, attackRadius, damageAmount);
 		}

@@ -4,9 +4,9 @@ import com.kwpugh.ward_blocks.config.WardBlocksConfig;
 import com.kwpugh.ward_blocks.init.BlockInit;
 import com.kwpugh.ward_blocks.util.WardBlocksLootTables;
 
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.JanksonConfigSerializer;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.PartitioningSerializer;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -17,8 +17,7 @@ import net.minecraft.util.Identifier;
 public class WardBlocks implements ModInitializer
 {	
 	public static final String MOD_ID = "ward_blocks";
-	public static final ItemGroup WARD_BLOCKS_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "ward_blocks_group"), () -> new ItemStack(BlockInit.DEFENSE_WARD_BLOCK));
-	public static final WardBlocks INSTANCE = new WardBlocks();
+	public static final ItemGroup WARD_BLOCKS_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "ward_blocks_group"), () -> new ItemStack(BlockInit.GROWTH_WARD_BLOCK));
 	public static final WardBlocksConfig CONFIG = AutoConfig.register(WardBlocksConfig.class, PartitioningSerializer.wrap(JanksonConfigSerializer::new)).getConfig();
 
 	@Override

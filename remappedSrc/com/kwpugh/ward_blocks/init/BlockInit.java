@@ -1,20 +1,11 @@
 package com.kwpugh.ward_blocks.init;
 
 import com.kwpugh.ward_blocks.WardBlocks;
-import com.kwpugh.ward_blocks.blocks.AttackWardBlock;
-import com.kwpugh.ward_blocks.blocks.DefenseWardBlock;
-import com.kwpugh.ward_blocks.blocks.ExpWardBlock;
-import com.kwpugh.ward_blocks.blocks.GrowthWardBlock;
-import com.kwpugh.ward_blocks.blocks.HealthWardBlock;
-import com.kwpugh.ward_blocks.blocks.LootWardBlock;
-import com.kwpugh.ward_blocks.blocks.entities.AttackWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.entities.DefenseWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.entities.ExpWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.entities.GrowthWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.entities.HealthWardBlockEntity;
-import com.kwpugh.ward_blocks.blocks.entities.LootWardBlockEntity;
+import com.kwpugh.ward_blocks.blocks.*;
+import com.kwpugh.ward_blocks.blocks.entities.*;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
@@ -57,22 +48,22 @@ public class BlockInit
 		{
 			Registry.register(Registry.BLOCK, new Identifier("ward_blocks", "health_ward_block"), HEALTH_WARD_BLOCK);
 		}
-		
+
 		if(enableDefense)
 		{
 			Registry.register(Registry.BLOCK, new Identifier("ward_blocks", "defense_ward_block"), DEFENSE_WARD_BLOCK);
 		}
-		
+
 		if(enableExp)
 		{
 			Registry.register(Registry.BLOCK, new Identifier("ward_blocks", "exp_ward_block"), EXP_WARD_BLOCK);
 		}
-		
+
 		if(enableAttack)
 		{
-			Registry.register(Registry.BLOCK, new Identifier("ward_blocks", "attack_ward_block"), ATTACK_WARD_BLOCK);		
+			Registry.register(Registry.BLOCK, new Identifier("ward_blocks", "attack_ward_block"), ATTACK_WARD_BLOCK);
 		}
-		
+
 		if(enableLoot)
 		{
 			Registry.register(Registry.BLOCK, new Identifier("ward_blocks", "loot_ward_block"), LOOT_WARD_BLOCK);
@@ -90,22 +81,22 @@ public class BlockInit
 		{
 			Registry.register(Registry.ITEM, new Identifier("ward_blocks", "health_ward_block"), new BlockItem(HEALTH_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
 		}
-		
+
 		if(enableDefense)
 		{
 			Registry.register(Registry.ITEM, new Identifier("ward_blocks", "defense_ward_block"), new BlockItem(DEFENSE_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
 		}
-		
+
 		if(enableExp)
 		{
 			Registry.register(Registry.ITEM, new Identifier("ward_blocks", "exp_ward_block"), new BlockItem(EXP_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
 		}
-		
+
 		if(enableAttack)
 		{
-			Registry.register(Registry.ITEM, new Identifier("ward_blocks", "attack_ward_block"), new BlockItem(ATTACK_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));		
+			Registry.register(Registry.ITEM, new Identifier("ward_blocks", "attack_ward_block"), new BlockItem(ATTACK_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
 		}
-		
+
 		if(enableLoot)
 		{
 			Registry.register(Registry.ITEM, new Identifier("ward_blocks", "loot_ward_block"), new BlockItem(LOOT_WARD_BLOCK, new Item.Settings().maxCount(1).group(WardBlocks.WARD_BLOCKS_GROUP)));
@@ -116,32 +107,32 @@ public class BlockInit
 	{
 		if(enableGrowth)
 		{
-			GROWTH_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:growth_ward_block", BlockEntityType.Builder.create(GrowthWardBlockEntity::new, GROWTH_WARD_BLOCK).build(null));
+			GROWTH_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:growth_ward_block", FabricBlockEntityTypeBuilder.create(GrowthWardBlockEntity::new, GROWTH_WARD_BLOCK).build(null));
 		}
 		
 		if(enableHealth)
 		{
-			HEALTH_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:health_ward_block", BlockEntityType.Builder.create(HealthWardBlockEntity::new, HEALTH_WARD_BLOCK).build(null));
+			HEALTH_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:health_ward_block", FabricBlockEntityTypeBuilder.create(HealthWardBlockEntity::new, HEALTH_WARD_BLOCK).build(null));
 		}
-		
+
 		if(enableDefense)
 		{
-			DEFENSE_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:defense_ward_block", BlockEntityType.Builder.create(DefenseWardBlockEntity::new, DEFENSE_WARD_BLOCK).build(null));
+			DEFENSE_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:defense_ward_block", FabricBlockEntityTypeBuilder.create(DefenseWardBlockEntity::new, DEFENSE_WARD_BLOCK).build(null));
 		}
-		
+
 		if(enableExp)
 		{
-			EXP_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:exp_ward_block", BlockEntityType.Builder.create(ExpWardBlockEntity::new, EXP_WARD_BLOCK).build(null));
+			EXP_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:exp_ward_block", FabricBlockEntityTypeBuilder.create(ExpWardBlockEntity::new, EXP_WARD_BLOCK).build(null));
 		}
-		
+
 		if(enableAttack)
 		{
-			ATTACK_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:attack_ward_block", BlockEntityType.Builder.create(AttackWardBlockEntity::new, ATTACK_WARD_BLOCK).build(null));
+			ATTACK_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:attack_ward_block", FabricBlockEntityTypeBuilder.create(AttackWardBlockEntity::new, ATTACK_WARD_BLOCK).build(null));
 		}
-		
+
 		if(enableLoot)
 		{
-			LOOT_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:loot_ward_block", BlockEntityType.Builder.create(LootWardBlockEntity::new, LOOT_WARD_BLOCK).build(null));
+			LOOT_WARD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "ward_blocks:loot_ward_block", FabricBlockEntityTypeBuilder.create(LootWardBlockEntity::new, LOOT_WARD_BLOCK).build(null));
 		}
 	}
 }

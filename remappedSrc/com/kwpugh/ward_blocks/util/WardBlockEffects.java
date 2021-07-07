@@ -3,21 +3,8 @@ package com.kwpugh.ward_blocks.util;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.block.BambooBlock;
-import net.minecraft.block.BambooSaplingBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CactusBlock;
-import net.minecraft.block.ChorusFlowerBlock;
-import net.minecraft.block.CocoaBlock;
-import net.minecraft.block.CropBlock;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.block.FungusBlock;
-import net.minecraft.block.SaplingBlock;
-import net.minecraft.block.SeaPickleBlock;
-import net.minecraft.block.StemBlock;
-import net.minecraft.block.SugarCaneBlock;
-import net.minecraft.block.SweetBerryBushBlock;
+import com.kwpugh.ward_blocks.WardBlocks;
+import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
@@ -25,18 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.BlazeEntity;
-import net.minecraft.entity.mob.CreeperEntity;
-import net.minecraft.entity.mob.EndermanEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.PatrolEntity;
-import net.minecraft.entity.mob.PhantomEntity;
-import net.minecraft.entity.mob.SkeletonEntity;
-import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.entity.mob.SpiderEntity;
-import net.minecraft.entity.mob.WitchEntity;
-import net.minecraft.entity.mob.WitherSkeletonEntity;
-import net.minecraft.entity.mob.ZombieEntity;
+import net.minecraft.entity.mob.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -46,7 +22,9 @@ import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 
 public class WardBlockEffects
-{		
+{
+	static boolean skippedEndermite = WardBlocks.CONFIG.GENERAL.skipNamedEndermite;
+
 	// Removes most mobs and spawns defined loot above block
 	public static void giveLoot(World world, BlockPos pos, int radius)
 	{
@@ -57,66 +35,69 @@ public class WardBlockEffects
 		
 		Entity targetEntity;
 		
-		// Cycle through and spawn loot and XP
+		// Cycle through, kill the mob and spawn loot and XP
 		while(iterator2.hasNext())
 		{
 			targetEntity = (Entity)iterator2.next();
 			if(targetEntity instanceof HostileEntity)
-			{				
-				targetEntity.remove();
+			{
+				//Special case for named endermite used for endermen farms
+				if( targetEntity instanceof EndermiteEntity  && skippedEndermite && targetEntity.getCustomName() != null ) break;
+
+				targetEntity.remove(Entity.RemovalReason.KILLED);
 				((HostileEntity) targetEntity).playSpawnEffects();
-				
+
 				ItemStack drop;
-				
+
 				if(targetEntity instanceof ZombieEntity)
 				{
-					drop = new ItemStack(Items.GOLD_INGOT);				
+					drop = new ItemStack(Items.GOLD_INGOT);
 				}
 				else if(targetEntity instanceof SpiderEntity)
 				{
-					drop = new ItemStack(Items.STRING);				
+					drop = new ItemStack(Items.STRING);
 				}
 				else if(targetEntity instanceof SkeletonEntity)
 				{
-					drop = new ItemStack(Items.BONE);				
+					drop = new ItemStack(Items.BONE);
 				}
 				else if(targetEntity instanceof PatrolEntity)
 				{
-					drop = new ItemStack(Items.IRON_INGOT);				
+					drop = new ItemStack(Items.IRON_INGOT);
 				}
 				else if(targetEntity instanceof CreeperEntity)
 				{
-					drop = new ItemStack(Items.GUNPOWDER);				
-				}				
+					drop = new ItemStack(Items.GUNPOWDER);
+				}
 				else if(targetEntity instanceof SlimeEntity)
 				{
-					drop = new ItemStack(Items.SLIME_BALL);				
+					drop = new ItemStack(Items.SLIME_BALL);
 				}
 				else if(targetEntity instanceof WitchEntity)
 				{
-					drop = new ItemStack(Items.EMERALD);				
+					drop = new ItemStack(Items.EMERALD);
 				}
 				else if(targetEntity instanceof EndermanEntity)
 				{
-					drop = new ItemStack(Items.ENDER_PEARL);				
+					drop = new ItemStack(Items.ENDER_PEARL);
 				}
 				else if(targetEntity instanceof BlazeEntity)
 				{
-					drop = new ItemStack(Items.BLAZE_ROD);				
+					drop = new ItemStack(Items.BLAZE_ROD);
 				}
 				else if(targetEntity instanceof WitherSkeletonEntity)
 				{
-					drop = new ItemStack(Items.WITHER_SKELETON_SKULL);				
+					drop = new ItemStack(Items.WITHER_SKELETON_SKULL);
 				}
 				else if(targetEntity instanceof PhantomEntity)
 				{
-					drop = new ItemStack(Items.PHANTOM_MEMBRANE);				
+					drop = new ItemStack(Items.PHANTOM_MEMBRANE);
 				}
 				else
 				{
-					drop = new ItemStack(Items.IRON_NUGGET);				
+					drop = new ItemStack(Items.IRON_NUGGET);
 				}
-				
+
 				world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), drop));
 			}
 		}
@@ -137,8 +118,11 @@ public class WardBlockEffects
 		{
 			targetEntity = (Entity)iterator2.next();
 			if(targetEntity instanceof HostileEntity)
-			{				
-				targetEntity.remove();
+			{
+				//Special case for named endermite used for endermen farms
+				if( targetEntity instanceof EndermiteEntity  && skippedEndermite && targetEntity.getCustomName() != null ) break;
+
+				targetEntity.remove(Entity.RemovalReason.KILLED);
 				((HostileEntity) targetEntity).playSpawnEffects();
 				world.spawnEntity(new ExperienceOrbEntity(world, pos.getX(), pos.getY()+1, pos.getZ(), 1));
 			}
@@ -172,7 +156,7 @@ public class WardBlockEffects
 	}
 	
 	// Gives player strength and resistance
-	public static void giveDefense(World world, BlockPos pos, int radius, int effectLevel)
+	public static void giveDefense(World world, BlockPos pos, int radius, int effectLevel, int effectTickInterval)
 	{
 		// Scan for players in range
 		Box playerBox = (new Box(pos)).expand(radius, 8.0D, radius);
@@ -181,14 +165,13 @@ public class WardBlockEffects
 		
 		ServerPlayerEntity targetPlayer;
 
-		
 		// Cycle through list and give effects to players				
 		while(iterator1.hasNext())
 		{
 			targetPlayer = (ServerPlayerEntity)iterator1.next();
-			
-			StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.RESISTANCE, 8, effectLevel, false, false);
-			StatusEffectInstance effect2 = new StatusEffectInstance(StatusEffects.STRENGTH, 8, effectLevel, false, false);
+
+			StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.RESISTANCE, effectTickInterval, effectLevel, false, false);
+			StatusEffectInstance effect2 = new StatusEffectInstance(StatusEffects.STRENGTH, effectTickInterval, effectLevel, false, false);
 
 			targetPlayer.addStatusEffect(effect);
 			targetPlayer.addStatusEffect(effect2);
@@ -196,13 +179,14 @@ public class WardBlockEffects
 	}
 	
 	//  Accelerates growth in area of effect
-	public static void growCrops(World world, BlockPos pos, int baseTickDelay, int radius)
+	public static void growCrops(World world, BlockPos pos, int baseTickDelay, int cactusTickDelay, int radius, int height)
 	{
 		ServerWorld serverWorld = (ServerWorld) world;
-	
+
 		BlockPos growthBlock = pos;
-	
-		for (BlockPos target : BlockPos.iterateOutwards(growthBlock, radius, 5, radius))
+
+		// For blocks that use a grow() method and implement Fertilizable
+		for (BlockPos target : BlockPos.iterateOutwards(growthBlock, radius, height, radius))
 		{
 			BlockState blockstate = world.getBlockState(target);
 			Block block = blockstate.getBlock();
@@ -215,7 +199,9 @@ public class WardBlockEffects
 					block instanceof SweetBerryBushBlock ||
 					block instanceof FungusBlock ||
 					block instanceof SaplingBlock ||
-					block instanceof SeaPickleBlock 
+					block instanceof SeaPickleBlock ||
+					block instanceof KelpBlock ||
+					block instanceof KelpPlantBlock
 					)
 			{
 				Fertilizable fertilizable = (Fertilizable)blockstate.getBlock();
@@ -231,17 +217,19 @@ public class WardBlockEffects
 				}
 			}
 		}
-		
-		for (BlockPos tickTarget : BlockPos.iterateOutwards(growthBlock, radius, 5, radius))
+
+		// For those blocks that lack grow() we fall back to randomTick()
+		for (BlockPos tickTarget : BlockPos.iterateOutwards(growthBlock, radius, height, radius))
 		{
 			BlockState blockstate2 = world.getBlockState(tickTarget);
 			Block blockToTick = blockstate2.getBlock();
 				
 			if(blockToTick instanceof SugarCaneBlock || 
 					blockToTick instanceof CactusBlock ||
-					blockToTick instanceof ChorusFlowerBlock)   
+					blockToTick instanceof ChorusFlowerBlock
+					)
 			{
-				if (world.getTime() % (baseTickDelay / 16) == 0)
+				if (world.getTime() % (cactusTickDelay) == 0)
 				{
 					blockToTick.randomTick(blockstate2, (ServerWorld) world, tickTarget, world.random);
 				}				
@@ -250,7 +238,7 @@ public class WardBlockEffects
 	}
 	
 	// Gives player heal, regeneration, and yellow hearts
-	public static void giveHealth(World world, BlockPos pos, int radius, int effectLevel, float yellowHearts)
+	public static void giveHealth(World world, BlockPos pos, int radius, int effectLevel, int effectTickInterval, boolean enableExtraHearts, float yellowHearts)
 	{
 		// Scan for players in range
 		Box playerBox = (new Box(pos)).expand(radius, 4, radius);
@@ -264,13 +252,16 @@ public class WardBlockEffects
 		{
 			targetPlayer = (ServerPlayerEntity)iterator1.next();
 			
-			StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.REGENERATION, 8, effectLevel, false, false);
-			StatusEffectInstance effect2 = new StatusEffectInstance(StatusEffects.SATURATION, 8, effectLevel, false, false);
+			StatusEffectInstance effect = new StatusEffectInstance(StatusEffects.REGENERATION, effectTickInterval, effectLevel, false, false);
+			StatusEffectInstance effect2 = new StatusEffectInstance(StatusEffects.SATURATION, effectTickInterval, effectLevel, false, false);
 
 			targetPlayer.addStatusEffect(effect);
 			targetPlayer.addStatusEffect(effect2);
-			
-			giveGreaterExtraHearts(world, targetPlayer, yellowHearts);
+
+			if(enableExtraHearts)
+			{
+				giveGreaterExtraHearts(world, targetPlayer, yellowHearts);
+			}
 		}
 	}
 	
